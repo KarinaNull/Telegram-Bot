@@ -31,7 +31,8 @@ namespace Awesome
                 await botClient.SendTextMessageAsync(e.Message.Chat,
                     "Привет, вот что я умею:\r\n" +
                     "/photo - отправить фото\r\n" +
-                    "/start - вывести перечень команд\r\n");
+                    "/start - вывести перечень команд\r\n" +
+                    "/sticker - отправить стикер\r\n");
             }
             else if (e.Message.Text == "/photo")
             {
@@ -39,6 +40,21 @@ namespace Awesome
                     e.Message.Chat,
                     photo: "https://github.com/TelegramBots/book/raw/master/src/docs/photo-ara.jpg",
                     caption: "<b>Попугайчик</b>.\r\nSource: <a href=\"https://pixabay.com\">Pixabay</a>", parseMode: ParseMode.Html);
+            }
+            else if (e.Message.Text == "/sticker")
+            {
+                var stickerIds = new[]
+                {
+                    "CAACAgIAAxkBAAEBc71gyxEQ1Eu7_JhQ4N8bEUysMg5YEgACjwADAfXbLp0fgFonCqORHwQ",
+                    "CAACAgIAAxkBAAEBdIhgy6wbEwvOIiZ5vnKQR2qjP0seVQACRQAD3U7yFTgZqaF0Gf8pHwQ",
+                    "CAACAgIAAxkBAAEBdItgy6wocLnnchUI95J1sIjbvjyVmgACHwADobYRCL2v7UTV4wIUHwQ",
+                    "CAACAgIAAxkBAAEBdI5gy6w5H2s6rSOv8fDwsqfLQrb1FgACQAAD3U7yFRIdRgRNaU3xHwQ",
+                    "CAACAgIAAxkBAAEBdJFgy6xepOwG64TUnpiJW4UjY-EndwAC3AEAAlrjihdqHsd1V_QIvh8E"
+                };
+
+                await botClient.SendStickerAsync(
+                e.Message.Chat,
+                sticker: stickerIds[random.Next(stickerIds.Length)]);
             }
         }
     }

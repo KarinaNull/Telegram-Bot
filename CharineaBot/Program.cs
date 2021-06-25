@@ -29,7 +29,16 @@ namespace Awesome
             if (e.Message.Text == "/start")
             {
                 await botClient.SendTextMessageAsync(e.Message.Chat,
-                    "Привет, вот что я умею:\r\nstart - вывести перечень команд\r\n");
+                    "Привет, вот что я умею:\r\n" +
+                    "/photo - отправить фото\r\n" +
+                    "/start - вывести перечень команд\r\n");
+            }
+            else if (e.Message.Text == "/photo")
+            {
+                await botClient.SendPhotoAsync(
+                    e.Message.Chat,
+                    photo: "https://github.com/TelegramBots/book/raw/master/src/docs/photo-ara.jpg",
+                    caption: "<b>Попугайчик</b>.\r\nSource: <a href=\"https://pixabay.com\">Pixabay</a>", parseMode: ParseMode.Html);
             }
         }
     }

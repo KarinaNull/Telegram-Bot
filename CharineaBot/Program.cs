@@ -68,6 +68,15 @@ namespace Awesome
                     "Конечно!!"
                 });
             }
+            else
+            {
+                await botClient.SendTextMessageAsync(
+                e.Message.Chat,
+                text: "Вы написали *Несуществующую* команду, повторите попытку",
+                parseMode: ParseMode.Markdown,
+                replyToMessageId: e.Message.MessageId,
+                replyMarkup: new InlineKeyboardMarkup(InlineKeyboardButton.WithUrl("Сообщить об ошибке", "https://vk.com/id_murmyau666")));
+            }
         }
     }
 }

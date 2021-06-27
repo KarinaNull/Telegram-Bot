@@ -29,17 +29,18 @@ namespace Awesome
             if (e.Message.Text == "/start")
             {
                 await botClient.SendTextMessageAsync(e.Message.Chat,
-                    "Привет, вот что я умею:\r\n" +
-                    "/photo - отправить фото\r\n" +
-                    "/start - вывести перечень команд\r\n" +
-                    "/sticker - отправить стикер\r\n");
+                "Привет, вот что я умею:\r\n" +
+                "/photo - отправить фото\r\n" +
+                "/start - вывести перечень команд\r\n" +
+                "/sticker - отправить стикер\r\n" +
+                "/nativePolls - Пройти опрос");
             }
             else if (e.Message.Text == "/photo")
             {
                 await botClient.SendPhotoAsync(
-                    e.Message.Chat,
-                    photo: "https://github.com/TelegramBots/book/raw/master/src/docs/photo-ara.jpg",
-                    caption: "<b>Попугайчик</b>.\r\nSource: <a href=\"https://pixabay.com\">Pixabay</a>", parseMode: ParseMode.Html);
+                e.Message.Chat,
+                photo: "https://github.com/TelegramBots/book/raw/master/src/docs/photo-ara.jpg",
+                caption: "<b>Попугайчик</b>.\r\nSource: <a href=\"https://pixabay.com\">Pixabay</a>", parseMode: ParseMode.Html);
             }
             else if (e.Message.Text == "/sticker")
             {
@@ -55,6 +56,17 @@ namespace Awesome
                 await botClient.SendStickerAsync(
                 e.Message.Chat,
                 sticker: stickerIds[random.Next(stickerIds.Length)]);
+            }
+            else if (e.Message.Text == "/nativePolls")
+            {
+                await botClient.SendPollAsync(
+                e.Message.Chat,
+                question: "Вы любите Костеньку?",
+                options: new[]
+                {
+                    "Очень!",
+                    "Конечно!!"
+                });
             }
         }
     }
